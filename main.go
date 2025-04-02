@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	err := providerserver.Serve(context.Background(), provider.New, providerserver.ServeOpts{
-		Address:         "registry.terraform.io/hashicorp/tls",
+		Address:         "registry.terraform.io/lonegunmanb/ephemeraltls",
 		Debug:           debug,
 		ProtocolVersion: 5,
 	})
