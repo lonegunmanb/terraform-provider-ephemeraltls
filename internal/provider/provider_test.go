@@ -6,43 +6,15 @@ package provider
 import (
 	"regexp"
 	"testing"
-	"time"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov5"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 
-func setTimeForTest(timeStr string) func() {
-	return func() {
-		overridableTimeFunc = func() time.Time {
-			t, _ := time.Parse(time.RFC3339, timeStr)
-			return t
-		}
-	}
-}
-
 func protoV5ProviderFactories() map[string]func() (tfprotov5.ProviderServer, error) {
 	return map[string]func() (tfprotov5.ProviderServer, error){
-		"tls": providerserver.NewProtocol5WithError(New()),
-	}
-}
-
-func providerVersion340() map[string]resource.ExternalProvider {
-	return map[string]resource.ExternalProvider{
-		"tls": {
-			VersionConstraint: "3.4.0",
-			Source:            "hashicorp/tls",
-		},
-	}
-}
-
-func providerVersion310() map[string]resource.ExternalProvider {
-	return map[string]resource.ExternalProvider{
-		"tls": {
-			VersionConstraint: "3.1.0",
-			Source:            "hashicorp/tls",
-		},
+		"ephemeraltls": providerserver.NewProtocol5WithError(New()),
 	}
 }
 
@@ -53,13 +25,13 @@ func TestProvider_InvalidProxyConfig(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				Config: `
-					provider "tls" {
+					provider "ephemeraltls" {
 						proxy {
 							url = "https://proxy.host.com"
 							from_env = true
 						}
 					}
-					resource "tls_private_key" "test" {
+					ephemeral "ephemeraltls_private_key" "test" {
 						algorithm = "ED25519"
 					}
 				`,
@@ -67,12 +39,12 @@ func TestProvider_InvalidProxyConfig(t *testing.T) {
 			},
 			{
 				Config: `
-					provider "tls" {
+					provider "ephemeraltls" {
 						proxy {
 							username = "user"
 						}
 					}
-					resource "tls_private_key" "test" {
+					ephemeral "ephemeraltls_private_key" "test" {
 						algorithm = "ED25519"
 					}
 				`,
@@ -80,12 +52,12 @@ func TestProvider_InvalidProxyConfig(t *testing.T) {
 			},
 			{
 				Config: `
-					provider "tls" {
+					provider "ephemeraltls" {
 						proxy {
 							password = "pwd"
 						}
 					}
-					resource "tls_private_key" "test" {
+					ephemeral "ephemeraltls_private_key" "test" {
 						algorithm = "ED25519"
 					}
 				`,
@@ -93,13 +65,13 @@ func TestProvider_InvalidProxyConfig(t *testing.T) {
 			},
 			{
 				Config: `
-					provider "tls" {
+					provider "ephemeraltls" {
 						proxy {
 							username = "user"
 							password = "pwd"
 						}
 					}
-					resource "tls_private_key" "test" {
+					ephemeral "ephemeraltls_private_key" "test" {
 						algorithm = "ED25519"
 					}
 				`,
@@ -107,13 +79,13 @@ func TestProvider_InvalidProxyConfig(t *testing.T) {
 			},
 			{
 				Config: `
-					provider "tls" {
+					provider "ephemeraltls" {
 						proxy {
 							username = "user"
 							from_env = true
 						}
 					}
-					resource "tls_private_key" "test" {
+					ephemeral "ephemeraltls_private_key" "test" {
 						algorithm = "ED25519"
 					}
 				`,

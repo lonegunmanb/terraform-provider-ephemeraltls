@@ -46,7 +46,7 @@ func (p *tlsProvider) resetConfig() {
 }
 
 func (p *tlsProvider) Metadata(_ context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "tls"
+	resp.TypeName = "ephemeraltls"
 }
 
 func (p *tlsProvider) Schema(_ context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
