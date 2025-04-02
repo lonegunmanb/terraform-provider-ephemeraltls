@@ -4,6 +4,7 @@
 package provider
 
 import (
+	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 	"regexp"
 	"testing"
 
@@ -19,7 +20,11 @@ func protoV5ProviderFactories() map[string]func() (tfprotov5.ProviderServer, err
 }
 
 func TestProvider_InvalidProxyConfig(t *testing.T) {
+
 	resource.UnitTest(t, resource.TestCase{
+		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
+			tfversion.SkipBelow(tfversion.Version1_10_0),
+		},
 		ProtoV5ProviderFactories: protoV5ProviderFactories(),
 
 		Steps: []resource.TestStep{
