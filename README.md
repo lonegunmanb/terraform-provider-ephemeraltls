@@ -1,4 +1,12 @@
-# Terraform Provider: TLS
+# Terraform Provider: EphemeralTLS
+
+Important notice: This provider is not intended to replace Terraform `tls` provider. It is forked from it, but removed all resources and data sources, only keeping the new `ephemeraltls_private_key` ephemeral.
+
+The TLS provider project seems not actively maintained for a while, but I have to use ephemeral tls private key in my project. I've opened my pull request to contribute a new ephemeral resoruce, but I'm not quite sure whether if and when it could be merged, so I forked the `tls` provider, removed all other resources and data sources. Since the ephemeral resource won't be stored in Terraform state, you can use this ephemeral provider and resource in your Terraform config, once the `tls` provider has supported this feature, you can switch back to the original `tls` provider without any configuration drift.
+
+Thanks for HashiCorp `tls` provider team for their great work, and I hope this fork could be merged back to the original `tls` provider in the future.
+
+---
 
 The TLS provider provides utilities for working with *Transport Layer Security*
 keys and certificates. It provides resources that

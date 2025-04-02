@@ -11,7 +11,7 @@ import (
 
 	r "github.com/hashicorp/terraform-plugin-testing/helper/resource"
 
-	"github.com/hashicorp/terraform-provider-tls/internal/provider/fixtures"
+	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/fixtures"
 )
 
 const (

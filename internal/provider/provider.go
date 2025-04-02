@@ -24,7 +24,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"golang.org/x/net/http/httpproxy"
 
-	"github.com/hashicorp/terraform-provider-tls/internal/provider/attribute_validator"
+	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/attribute_validator"
 )
 
 type tlsProvider struct {
@@ -185,19 +185,11 @@ func (p *tlsProvider) Configure(ctx context.Context, req provider.ConfigureReque
 }
 
 func (p *tlsProvider) Resources(_ context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewCertRequestResource,
-		NewLocallySignedCertResource,
-		NewPrivateKeyResource,
-		NewSelfSignedCertResource,
-	}
+	return []func() resource.Resource{}
 }
 
 func (p *tlsProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewCertificateDataSource,
-		NewPublicKeyDataSource,
-	}
+	return []func() datasource.DataSource{}
 }
 
 func (p *tlsProvider) EphemeralResources(context.Context) []func() ephemeral.EphemeralResource {

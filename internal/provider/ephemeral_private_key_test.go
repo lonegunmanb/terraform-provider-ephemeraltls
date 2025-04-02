@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/echoprovider"
 	r "github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/tfversion"
-	tu "github.com/hashicorp/terraform-provider-tls/internal/provider/testutils"
+	tu "github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/testutils"
 )
 
 func TestAccEphemeralPrivateKey_RSA_DefaultRsaBits(t *testing.T) {

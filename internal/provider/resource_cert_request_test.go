@@ -14,7 +14,7 @@ import (
 	r "github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
 
-	tu "github.com/hashicorp/terraform-provider-tls/internal/provider/testutils"
+	tu "github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/testutils"
 )
 
 func TestResourceCertRequest(t *testing.T) {
