@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-
 	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider"
 )
 
