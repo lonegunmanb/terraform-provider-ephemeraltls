@@ -2,5 +2,5 @@
 
 ephemeral "ephemeraltls_private_key" "test" {
   algorithm = "RSA"
-  rsa_bits = 4096
+  rsa_bits  = 4096
 }
