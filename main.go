@@ -11,7 +11,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/hashicorp/terraform-provider-tls/internal/provider"
+	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider"
 )
 
 func main() {

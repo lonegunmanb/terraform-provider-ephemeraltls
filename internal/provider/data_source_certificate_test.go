@@ -12,8 +12,8 @@ import (
 	r "github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 
-	"github.com/hashicorp/terraform-provider-tls/internal/provider/fixtures"
-	tu "github.com/hashicorp/terraform-provider-tls/internal/provider/testutils"
+	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/fixtures"
+	tu "github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/testutils"
 )
 
 func TestDataSourceCertificate_CertificateContent(t *testing.T) {

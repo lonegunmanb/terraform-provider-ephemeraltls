@@ -27,7 +27,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
-	"github.com/hashicorp/terraform-provider-tls/internal/provider/attribute_plan_modifier_bool"
+	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/attribute_plan_modifier_bool"
 )
 
 type selfSignedCertResource struct{}
