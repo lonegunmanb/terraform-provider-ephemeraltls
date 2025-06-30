@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/ephemeral"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/boolvalidator"
@@ -22,9 +23,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
-	"golang.org/x/net/http/httpproxy"
-
 	"github.com/lonegunmanb/terraform-provider-ephemeraltls/internal/provider/attribute_validator"
+	"golang.org/x/net/http/httpproxy"
 )
 
 type tlsProvider struct {
@@ -185,6 +185,11 @@ func (p *tlsProvider) Configure(ctx context.Context, req provider.ConfigureReque
 }
 
 func (p *tlsProvider) Resources(_ context.Context) []func() resource.Resource {
+	if os.Getenv("TF_ACC") != "" {
+		return []func() resource.Resource{
+			NewPrivateKeyResource,
+		}
+	}
 	return []func() resource.Resource{}
 }
 
@@ -195,6 +200,7 @@ func (p *tlsProvider) DataSources(_ context.Context) []func() datasource.DataSou
 func (p *tlsProvider) EphemeralResources(context.Context) []func() ephemeral.EphemeralResource {
 	return []func() ephemeral.EphemeralResource{
 		NewPrivateKeyEphemeralResource,
+		NewPublicKeyEphemeralResource,
 	}
 }
 
